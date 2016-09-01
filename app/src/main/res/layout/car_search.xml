@@ -1,0 +1,103 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/orange_light"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    tools:context="com.example.wilberg.bankapp.MainActivity" >
+
+    <EditText
+        android:id="@+id/repaymentEditText"
+        android:layout_width="200dp"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/perMonthEditText"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="16dp"
+        android:ems="10"
+        android:hint="@string/repayment_text_view" />
+
+    <CheckBox
+        android:id="@+id/checkBox1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/repaymentEditText"
+        android:layout_centerVertical="true"
+        android:text="@string/advanced_search_button" />
+
+    <Button
+        android:id="@+id/findCarsButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/checkBox1"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="20dp"
+        android:text="@string/find_cars_button" />
+
+    <EditText
+        android:id="@+id/equityEditText"
+        android:layout_width="200dp"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/perMonthEditText"
+        android:layout_alignParentTop="true"
+        android:layout_marginTop="58dp"
+        android:ems="10"
+        android:gravity="center_vertical"
+        android:hint="@string/equity_edit_text"
+        android:digits="0123456789 "
+        android:inputType="number" >
+
+        <requestFocus />
+    </EditText>
+
+    <TextView
+        android:id="@+id/findYourCarTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="14dp"
+        android:text="@string/find_your_car_text_view"
+        android:textAppearance="?android:attr/textAppearanceLarge" />
+
+    <EditText
+        android:id="@+id/perMonthEditText"
+        android:layout_width="200dp"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/repaymentEditText"
+        android:layout_below="@+id/equityEditText"
+        android:layout_marginTop="15dp"
+        android:ems="10"
+        android:hint="@string/per_month_edit_text" />
+
+    <TextView
+        android:id="@+id/currencyTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/equityEditText"
+        android:layout_alignBottom="@+id/equityEditText"
+        android:layout_toRightOf="@+id/equityEditText"
+        android:text="@string/currency_text_view" />
+
+    <TextView
+        android:id="@+id/currencyTextView2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/perMonthEditText"
+        android:layout_alignBottom="@+id/perMonthEditText"
+        android:layout_alignLeft="@+id/currencyTextView"
+        android:text="@string/currency_text_view" />
+
+    <TextView
+        android:id="@+id/yearsTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/repaymentEditText"
+        android:layout_alignBottom="@+id/repaymentEditText"
+        android:layout_alignLeft="@+id/currencyTextView2"
+        android:text="@string/years_text_view" />
+
+</RelativeLayout>
+

@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="utf-8"?>
+<TableLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/TableLayout1"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent" >
+
+    <TableRow
+        android:id="@+id/tableRow1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" >
+
+        <TextView
+            android:id="@+id/carNameTextView"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Opel" />
+        
+                
+        <CheckBox android:id="@+id/isFavoritedCheckBox" 
+   			style="?android:attr/starStyle" 
+    		android:layout_width="wrap_content" 
+    		android:layout_height="wrap_content" /> 
+    </TableRow>
+
+	<TableRow
+		android:id="@+id/ImgTableRow"
+		android:layout_width="wrap_content"
+		android:layout_height="wrap_content"
+		android:weightSum="3" >
+
+		<ImageView
+			android:id="@+id/carImageView"
+			android:layout_width="match_parent"
+			android:layout_height="wrap_content"
+			android:scaleType="fitXY"/>
+
+	</TableRow>
+
+    <TableRow
+        android:id="@+id/tableRow2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="1" >
+
+        <ScrollView
+            android:id="@+id/carScrollView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1" >
+
+            <TableLayout
+                android:id="@+id/carTableScrollView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:stretchColumns="yes" >
+                
+                <TableRow
+                    android:id="@+id/tableRow3"
+        			android:layout_width="wrap_content"
+        			android:layout_height="wrap_content" >
+
+                	<Gallery
+                    	android:id="@+id/gallery1"
+                    	android:layout_width="wrap_content"
+                    	android:layout_height="wrap_content" />
+                </TableRow>
+                
+                <TableRow
+                    android:id="@+id/tableRow4"
+        			android:layout_width="wrap_content"
+        			android:layout_height="wrap_content"
+        			android:weightSum="3" >
+
+                	<TextView
+            			android:id="@+id/infoDescTextView"
+			            android:layout_width="0dp"
+			            android:layout_height="wrap_content"
+			            android:layout_weight="1"
+			            android:text="Salgsform: " />
+                	
+                	<TextView
+            			android:id="@+id/infoValuesTextView"
+			            android:layout_width="0dp"
+			            android:layout_height="wrap_content"
+			            android:layout_weight="2"
+			            android:text="Bruktbil til salgs" />
+                	
+                </TableRow>
+                
+                <TableRow
+                    android:id="@+id/tableRow5"
+        			android:layout_width="wrap_content"
+        			android:layout_height="wrap_content" >
+                	
+                    <TextView
+            			android:id="@+id/carDescTextView"
+			            android:layout_width="0dp"
+			            android:layout_height="wrap_content"
+			            android:layout_weight="1"
+			            android:text="Beskrivelse" />
+
+                </TableRow>
+
+            </TableLayout>
+        </ScrollView>
+    </TableRow>
+
+</TableLayout>

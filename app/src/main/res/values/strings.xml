@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">BankApp</string>
+    <string name="action_settings">Settings</string>
+
+    <string name="bank">BANKLOGO</string>
+
+    <string name="dwelling_button">Bolig</string>
+    <string name="car_button">Bil</string>
+    <string name="renovation_button">Oppussing</string>
+
+    <string name="find_your_car_text_view">FINN DIN BIL</string>
+    <string name="currency_text_view">kr</string>
+    <string name="years_text_view">år</string>
+    <string name="equity_edit_text">Egenkapital</string>
+    <string name="per_month_edit_text">Avsetting per måned</string>
+    <string name="repayment_text_view">Nedbetalingstid</string>
+    <string name="advanced_search_button">Avansert søk</string>
+    <string name="find_cars_button">FINN BILER</string>
+
+    <string name="drawer_open">Drawer Opened</string>
+    <string name="drawer_close">Drawer Closed</string>
+
+    <string-array name="drawer_list">
+        <item>Published</item>
+        <item>Model</item>
+        <item>Lowest Price</item>
+        <item>Highest Price</item>
+        <item>Lowest Distance</item>
+        <item>Most Recent</item>
+        <item>Least Recent</item>
+        <item>Most Relevant</item>
+        <item>Nearest</item>
+    </string-array>
+
+    <string name="general_info_text_view">Volkswagen Passat</string>
+    <string name="next_page_button">Neste</string>
+
+    <string name="price_text_view">Pris: </string>
+    <string name="model_text_view">Modell: </string>
+    <string name="distance_text_view">Km.stand: </string>
+    <string name="model_year_text_view">Årsmodell: </string>
+
+
+
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+
+</resources>
