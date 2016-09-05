@@ -35,7 +35,7 @@ public class SearchTabFragment extends Fragment {
     private String resultNumber;
     private int page;
     private int carNumber;
-    private String sortMethod;
+    private String sortMethod = "";
 
     View view;
     private TableLayout carTableScrollView;
@@ -108,7 +108,6 @@ public class SearchTabFragment extends Fragment {
         protected String doInBackground(String... strings) {
 
             try {
-                Log.d("sortmethodSEARCH", sortMethod);
                 String url = "http://m.finn.no/car/used/search.html?filters&sort=" + sortMethod;
                 Document doc = Jsoup.connect(url).get();
                 resultNumber = doc.select("div.flex-grow1.rightify").select("b").first().ownText();

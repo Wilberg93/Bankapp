@@ -62,7 +62,6 @@ public class MainTabActivity extends AppCompatActivity {
             public void onItemClick(AdapterView<?> adapterView, View view, int position, long l) {
 
                 leftDrawer.closeDrawers();
-                view.setBackgroundColor(0xff808080);
                 Intent updateIntent = new Intent(getApplicationContext(), MainTabActivity.class);
                 updateIntent.putExtra("sortMethod", Integer.toString(position));
                 startActivity(updateIntent);
