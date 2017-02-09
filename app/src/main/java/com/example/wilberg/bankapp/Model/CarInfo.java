@@ -1,9 +1,12 @@
 package com.example.wilberg.bankapp.Model;
 
+import java.util.ArrayList;
+import java.util.LinkedHashMap;
+
 public class CarInfo {
 	
-	private String rowId;
-	private String carId;
+	private String title;
+	private String carID;
 	private String name;
 	private String distance;
 	private String price;
@@ -14,13 +17,16 @@ public class CarInfo {
 	private String fuel;
 	private String year;
 	private String location;
-	private String imgURL;
+	private String mainImgURL;
+	private String description;
+	private ArrayList<String> imgURLs;
+	private LinkedHashMap<String, String> specs;
 
-	public CarInfo(String rowId, String carId, String name, String year, String distance, String price, String brand, String model, String coachbuilder,
-				   String gearType, String fuel, String location, String imgURL){
+	public CarInfo(String title, String carID, String name, String year, String distance, String price, String brand, String model, String coachbuilder,
+				   String gearType, String fuel, String location, String mainImgURL, ArrayList<String> imgURLs, LinkedHashMap<String, String> specs, String description){
 		
-		this.rowId = rowId;
-		this.carId = carId;
+		this.title = title;
+		this.carID = carID;
 		this.name = name;
 		this.year = year;
 		this.distance = distance;
@@ -31,23 +37,26 @@ public class CarInfo {
 		this.gearType = gearType;
 		this.fuel = fuel;
 		this.location = location;
-		this.imgURL = imgURL;
+		this.mainImgURL = mainImgURL;
+		this.imgURLs = imgURLs;
+		this.specs = specs;
+		this.description = description;
 		
 	}
-	public String getRowId() {
-		return rowId;
+	public String getTite() {
+		return title;
 	}
 
-	public void setRowId(String rowId) {
-		this.rowId = rowId;
+	public void setTitle(String title) {
+		this.title = title;
 	}
 	
-	public String getCarId() {
-		return carId;
+	public String getCarID() {
+		return carID;
 	}
 
-	public void setCarId(String carId) {
-		this.carId = carId;
+	public void setCarID(String carID) {
+		this.carID = carID;
 	}
 
 	public String getName() {
@@ -130,8 +139,20 @@ public class CarInfo {
 		this.location = location;
 	}
 
-	public String getImgURL() { return imgURL; }
+	public String getMainImgURL() { return mainImgURL; }
 
-	public void setImgURL(String imgURL) { this.imgURL = imgURL; }
+	public void setMainImgURL(String mainImgURL) { this.mainImgURL = mainImgURL; }
+
+	public ArrayList<String> getImgURLs() { return imgURLs; }
+
+	public void setImgURLs(ArrayList<String> imgURLs) { this.imgURLs = imgURLs; }
+
+	public LinkedHashMap<String, String> getSpecs() { return specs; }
+
+	public void setSpecs(LinkedHashMap<String, String> specs) { this.specs = specs; }
+
+	public String getDescription() { return description; }
+
+	public void setDescription(String description) { this.description = description; }
 
 }

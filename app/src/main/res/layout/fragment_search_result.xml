@@ -10,30 +10,23 @@
         android:id="@+id/tableRow1"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:weightSum="5" >
+        android:weightSum="5"
+        android:background="@color/light_grey">
 
         <TextView
             android:id="@+id/resultCountTextView"
             android:layout_width="0dp"
+            android:textColor="@color/colorPrimary"
             android:layout_height="wrap_content"
             android:layout_weight="4"
-            android:paddingLeft="5dp"/>
-
-        <Button
-            android:id="@+id/nextPageButton"
-            style="?android:attr/buttonStyleSmall"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:text="@string/next_page_button" />
+            android:paddingLeft="@dimen/padding_medium" />
 
     </TableRow>
-
-    <TableRow
-        android:id="@+id/tableRow2"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_weight="1" >
+    <android.support.v4.widget.SwipeRefreshLayout
+        android:id="@+id/swipeRefreshLayout"
+        android:backgroundTint="@color/colorPrimary"
+        android:layout_height="0dp"
+        android:layout_weight="1">
 
         <ScrollView
             android:id="@+id/carScrollView"
@@ -48,24 +41,23 @@
                 android:stretchColumns="yes" >
             </TableLayout>
         </ScrollView>
+    </android.support.v4.widget.SwipeRefreshLayout>
 
-    </TableRow>
+
 
     <TableRow
         android:id="@+id/tableRow3"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content" >
+        android:layout_height="wrap_content"
+        android:background="@color/light_grey">
 
         <Button
-            android:id="@+id/nextPageButton2"
-            style="?android:attr/buttonStyleSmall"
+            android:id="@+id/goToTopButton"
+            style="@style/button"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="@string/next_page_button" />
-
-
-
+            android:text="@string/back_to_top_button" />
     </TableRow>
 
 

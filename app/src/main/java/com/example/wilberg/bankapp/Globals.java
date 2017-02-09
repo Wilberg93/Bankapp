@@ -19,7 +19,7 @@ public class Globals {
 
         cars = new ArrayList<>();
         favoritedCars = new ArrayList<>();
-        page = 0;
+        page = 1;
 
     }
 

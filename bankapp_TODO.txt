@@ -1,0 +1,17 @@
+TODO:
+
+inflate 10 new rows if scrolled all the way the bottom
+	- remove next buttons?
+	
+add filter function
+
+	
+go from first to last image in viewpager
+
+desc title, add "show more" if > 3 lines
+
+swipe to sides to load a new car
+
+fix location, tab icons and name
+
+reduce image resolution

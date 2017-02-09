@@ -31,77 +31,74 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
-				android:paddingBottom="20dp"
-                android:weightSum="10" >
+				android:paddingBottom="@dimen/padding_small"
+                android:weightSum="5" >
 
                 <TextView
                     android:id="@+id/carInfoTextView"
-                    android:layout_width="wrap_content"
+                    android:layout_width="0dp"
                     android:layout_height="match_parent"
-                    android:layout_weight="9"
-					android:ems="11"
+                    android:layout_weight="3"
+					android:ems="10"
 					android:singleLine="true"
+					android:textColor="@color/black"
                     android:text="@string/general_info_text_view"
-					android:paddingTop="5dp" />
+					android:paddingTop="@dimen/padding_small" />
 
                 <TextView
                     android:id="@+id/locationTextView"
-                    android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
-					android:layout_weight="1"
-					android:ems="4"
-					android:singleLine="true"
-                    android:paddingLeft="15dp"
-                    android:paddingTop="5dp"
-                    android:text="oslo" />
-            
-            	</LinearLayout>
-            <LinearLayout
-        	android:layout_width="match_parent"
-        	android:layout_height="wrap_content"
-        	android:orientation="horizontal"
-        	android:weightSum="5" >
-
-                <TextView
-                    android:id="@+id/priceTextView"
                     android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="2"
-					android:paddingBottom="5dp"/>
+                    android:layout_height="match_parent"
+					android:layout_weight="2"
+					android:ems="7"
+					android:singleLine="true"
+                    android:paddingLeft="@dimen/padding_large"
+                    android:paddingTop="@dimen/padding_small"
+					android:textColor="@color/black"
+                    android:text="oslo" />
+
+
+			</LinearLayout>
+
+			<LinearLayout
+				android:layout_width="match_parent"
+				android:layout_height="wrap_content"
+				android:orientation="horizontal"
+				android:weightSum="5" >
+
+				<TextView
+					android:id="@+id/priceTextView"
+					android:textSize="@dimen/medium_font_size"
+					android:textColor="@color/black"
+					android:layout_width="0dp"
+					android:layout_height="wrap_content"
+					android:layout_weight="2"
+					android:paddingBottom="@dimen/padding_small"/>
+			</LinearLayout>
+
+            <LinearLayout
+        		android:layout_width="match_parent"
+        		android:layout_height="wrap_content"
+        		android:orientation="horizontal"
+        		android:weightSum="6" >
+
+				<TextView
+					android:id="@+id/yearTextView"
+					android:layout_width="0dp"
+					android:layout_height="wrap_content"
+					android:layout_weight="3"
+					android:text="@string/model_year_text_view" />
 
                 <TextView
                     android:id="@+id/distanceTextView"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="3"
-					android:paddingLeft="10dp"
-					android:paddingBottom="5dp"/>
-                
+					android:paddingLeft="@dimen/padding_medium"
+					android:paddingBottom="@dimen/padding_small"/>
+
         		</LinearLayout>
-       	 	<LinearLayout
-        	android:layout_width="match_parent"
-        	android:layout_height="wrap_content"
-        	android:orientation="horizontal"
-        	android:weightSum="5" >
-
-                <TextView
-                    android:id="@+id/modelTextView"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="2"
-					android:text="@string/model_text_view" />
-
-                <TextView
-                    android:id="@+id/yearTextView"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="3"
-					android:paddingLeft="10dp"
-                    android:text="@string/model_year_text_view" />
-
-                </LinearLayout>
         </LinearLayout>
 	</LinearLayout>
-
 </TableRow>
 

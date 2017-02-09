@@ -4,7 +4,20 @@
     <dimen name="activity_horizontal_margin">16dp</dimen>
     <dimen name="activity_vertical_margin">16dp</dimen>
 
-    <dimen name="home_logo">30dp</dimen>
-    <dimen name="home_buttons_font_size">20dp</dimen>
+    <dimen name="logo_font_size">40sp</dimen>
+    <dimen name="home_button_font_size">20sp</dimen>
+
+    <dimen name="title_font_size">20sp</dimen>
+
+    <dimen name="basic_button_font_size">30sp</dimen>
+    <dimen name="basic_button_small_font_size">20sp</dimen>
+
+    <dimen name="large_font_size">30sp</dimen>
+    <dimen name="medium_font_size">20sp</dimen>
+
+    <dimen name="padding_small">4dp</dimen>
+    <dimen name="padding_medium">8dp</dimen>
+    <dimen name="padding_large">16dp</dimen>
+    <dimen name="padding_xl">24dp</dimen>
 
 </resources>

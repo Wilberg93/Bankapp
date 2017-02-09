@@ -22,6 +22,8 @@
     <string name="drawer_open">Drawer Opened</string>
     <string name="drawer_close">Drawer Closed</string>
 
+    <string name="sort_by_text_view">Sort by</string>
+
     <string-array name="drawer_list">
         <item>Published</item>
         <item>Model</item>
@@ -34,10 +36,23 @@
         <item>Nearest</item>
     </string-array>
 
-    <string name="general_info_text_view">Volkswagen Passat</string>
-    <string name="next_page_button">Neste</string>
+    <string name="home_button">HOME</string>
+    <string name="sort_button">SORT</string>
+    <string name="filter_button">FILTER</string>
+    <string name="done_button">DONE</string>
 
+    <string name="search_result_text_view">%1$s results.</string>
+    <string name="general_info_text_view">Volkswagen Passat</string>
+    <string name="next_page_button">NEXT</string>
+    <string name="back_to_top_button">BACK TO TOP</string>
+
+
+    <string name="image_result_default">1 of %1$d</string>
+    <string name="image_result_on_page_changed">%1$d of %2$d</string>
+    <string name="about_car_text_view">About The Car</string>
+    <string name="car_description_text_view">Description</string>
     <string name="price_text_view">Pris: </string>
+    <string name="actual_price_text_view">%1$s kr</string>
     <string name="model_text_view">Modell: </string>
     <string name="distance_text_view">Km.stand: </string>
     <string name="model_year_text_view">Årsmodell: </string>

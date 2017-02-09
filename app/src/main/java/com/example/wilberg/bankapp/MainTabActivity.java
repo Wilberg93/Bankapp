@@ -18,7 +18,10 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.ListView;
+import android.widget.TextView;
 
+
+import com.example.wilberg.bankapp.DB.DBTools;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -28,6 +31,9 @@ import java.util.List;
  */
 public class MainTabActivity extends AppCompatActivity {
 
+    private final static String CAR_ID = "com.example.wilberg.bankapp.CAR_ID";
+    private final static String IS_CHECKED_BOOLEAN = "com.example.wilberg.bankapp.IS_CHECKED_BOOLEAN";
+
     private DrawerLayout leftDrawer;
     private ListView mDrawerList;
     private Toolbar toolbar;
@@ -35,7 +41,9 @@ public class MainTabActivity extends AppCompatActivity {
     private ViewPager viewPager;
     private LinearLayout mDrawerLinearLayout;
     private Button doneDrawerButton;
+    private TextView homeTextView;
     private Button sortButton;
+    private Button filterButton;
 
     private String[] mDrawerListItems;
 
@@ -56,7 +64,7 @@ public class MainTabActivity extends AppCompatActivity {
         mDrawerLinearLayout = (LinearLayout) findViewById(R.id.left_drawer);
         mDrawerList = (ListView) findViewById(R.id.optonlist);
         mDrawerListItems = getResources().getStringArray(R.array.drawer_list);
-        mDrawerList.setAdapter(new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, mDrawerListItems));
+        mDrawerList.setAdapter(new ArrayAdapter<String>(this, android.R.layout.simple_selectable_list_item, mDrawerListItems));
         mDrawerList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int position, long l) {
@@ -78,6 +86,14 @@ public class MainTabActivity extends AppCompatActivity {
 
             }
         });
+        homeTextView = (TextView) findViewById(R.id.homeTextView);
+        homeTextView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent homeIntent = new Intent(MainTabActivity.this, MainActivity.class);
+                startActivity(homeIntent);
+            }
+        });
         sortButton = (Button) findViewById(R.id.sortButton);
         sortButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -87,9 +103,19 @@ public class MainTabActivity extends AppCompatActivity {
 
             }
         });
+        filterButton = (Button) findViewById(R.id.filterButton);
+        filterButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                leftDrawer.openDrawer(Gravity.LEFT);
+
+            }
+        });
 
         setSupportActionBar(toolbar);
-        getSupportActionBar().setTitle("Home");
+        getSupportActionBar().setTitle("");
+        //getSupportActionBar().setTitle("Home");
         tabLayout.setupWithViewPager(viewPager);
         setupViewPager(viewPager);
 
@@ -122,15 +148,17 @@ public class MainTabActivity extends AppCompatActivity {
         searchFrag = new SearchTabFragment();
 
         ViewPagerAdapter adapter = new ViewPagerAdapter(getSupportFragmentManager());
-        adapter.addFragment(new SearchTabFragment());
+        adapter.addFragment(searchFrag);
         adapter.addFragment(favFrag);
         viewPager.setAdapter(adapter);
         setIconForTabs();
 
+        /*
         viewPager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
 
             @Override
             public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) { }
+
 
             @Override
             public void onPageSelected(int position) {
@@ -145,17 +173,20 @@ public class MainTabActivity extends AppCompatActivity {
                 }
             }
 
+
             @Override
             public void onPageScrollStateChanged(int state) { }
         });
+        */
     }
+
 
         public void setIconForTabs() {
 
             int[] tabsIcon = {
 
-                    R.mipmap.ic_launcher,
-                    R.mipmap.ic_launcher
+                    R.drawable.search_icon,
+                    R.drawable.fav_icon
 
             };
 
@@ -168,7 +199,13 @@ public class MainTabActivity extends AppCompatActivity {
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
 
-        favFrag.setUpUI();
+        if(data.getBooleanExtra(IS_CHECKED_BOOLEAN, false) && !DBTools.getInstance(this).checkForCar(data.getStringExtra(CAR_ID))) {
+            Log.d("HAHA", Boolean.toString(!DBTools.getInstance(this).checkForCar(CAR_ID)));
+            favFrag.updateView(data.getStringExtra(CAR_ID));
+    }
+        else if(!data.getBooleanExtra(IS_CHECKED_BOOLEAN, false) && !DBTools.getInstance(this).checkForCar(data.getStringExtra(CAR_ID)))
+            favFrag.removeView(data.getStringExtra(CAR_ID));
+
 
     }
 }

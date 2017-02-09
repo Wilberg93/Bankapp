@@ -14,14 +14,13 @@ import android.widget.TableLayout;
 import android.widget.TableRow;
 import android.widget.TextView;
 
+import com.example.wilberg.bankapp.DB.DBTools;
 import com.example.wilberg.bankapp.Model.CarInfo;
 import com.squareup.picasso.Picasso;
 
-
-/**
- * A simple {@link Fragment} subclass.
- */
 public class FavoriteTabFragment extends Fragment {
+
+    private final static String CAR_ID = "com.example.wilberg.bankapp.CAR_ID";
 
     View view;
     private TableLayout carTableScrollView;
@@ -49,7 +48,7 @@ public class FavoriteTabFragment extends Fragment {
     public void setUpUI() {
 
         carTableScrollView.removeAllViews();
-        for(CarInfo theCar: Globals.getInstance().getFavoritedCars())
+        for(CarInfo theCar: DBTools.getInstance(getContext()).getFavoritedCars())
             inflateScrollView(theCar);
 
     }
@@ -58,17 +57,16 @@ public class FavoriteTabFragment extends Fragment {
 
         LayoutInflater inflater = (LayoutInflater) getActivity().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         View newCarRow = inflater.inflate(R.layout.search_result_row, null);
+
         TextView carInfoTextView = (TextView) newCarRow.findViewById(R.id.carInfoTextView);
         TextView locationTextView = (TextView) newCarRow.findViewById(R.id.locationTextView);
         TextView priceTextView = (TextView) newCarRow.findViewById(R.id.priceTextView);
-        TextView modelTextView = (TextView) newCarRow.findViewById(R.id.modelTextView);
         TextView distanceTextView = (TextView) newCarRow.findViewById(R.id.distanceTextView);
         TextView yearTextView = (TextView) newCarRow.findViewById(R.id.yearTextView);
         TableRow inflatedTableRow = (TableRow) newCarRow.findViewById(R.id.tableRow1);
-        inflatedTableRow.setId(Integer.parseInt(car.getRowId()));
 
         carImageView = (ImageView) newCarRow.findViewById(R.id.carImageView);
-        Picasso.with(getActivity()).load(car.getImgURL()).into(carImageView);
+        Picasso.with(getActivity()).load(car.getMainImgURL()).into(carImageView);
 
         carInfoTextView.setText(car.getName());
         yearTextView.append(" " + car.getYear());
@@ -76,8 +74,7 @@ public class FavoriteTabFragment extends Fragment {
         locationTextView.setText(" " + car.getLocation());
         priceTextView.append(car.getPrice() + " kr");
 
-        int rowId = carTableScrollView.getChildCount();
-        newCarRow.setTag(rowId);
+        newCarRow.setTag(car.getCarID());
         carTableScrollView.addView(newCarRow);
 
         inflatedTableRow.setOnClickListener(new View.OnClickListener() {
@@ -86,12 +83,24 @@ public class FavoriteTabFragment extends Fragment {
 
                 Intent carIntent = new Intent(getActivity(), CarInfoActivity.class);
 
-                carIntent.putExtra("carId", (Integer)view.getTag());
+                carIntent.putExtra(CAR_ID, view.getTag().toString());
                 startActivityForResult(carIntent, 1);
 
             }
         });
 
     }
+
+    public void updateView(String carID) {
+        Log.d("HMMM", "HMMMM");
+        inflateScrollView(DBTools.getInstance(getContext()).getFavCar(carID));
+
+    }
+
+    public void removeView(String carID) {
+        carTableScrollView.removeView(carTableScrollView.findViewWithTag(carID));
+
+    }
+
 
 }
