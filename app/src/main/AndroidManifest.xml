@@ -18,8 +18,7 @@
             </intent-filter>
         </activity>
         <activity android:name=".CarInfoActivity"> </activity>
-        <activity android:name=".CarSearchActivity"> </activity>
-        <activity android:name=".MainTabActivity"> </activity>
+        <activity android:name=".TabsActivity"> </activity>
     </application>
 
 </manifest>

@@ -3,7 +3,7 @@ package com.example.wilberg.bankapp.Model;
 import java.util.ArrayList;
 import java.util.LinkedHashMap;
 
-public class CarInfo {
+public class Car {
 	
 	private String title;
 	private String carID;
@@ -22,8 +22,8 @@ public class CarInfo {
 	private ArrayList<String> imgURLs;
 	private LinkedHashMap<String, String> specs;
 
-	public CarInfo(String title, String carID, String name, String year, String distance, String price, String brand, String model, String coachbuilder,
-				   String gearType, String fuel, String location, String mainImgURL, ArrayList<String> imgURLs, LinkedHashMap<String, String> specs, String description){
+	public Car(String title, String carID, String name, String year, String distance, String price, String brand, String model, String coachbuilder,
+			   String gearType, String fuel, String location, String mainImgURL, ArrayList<String> imgURLs, LinkedHashMap<String, String> specs, String description){
 		
 		this.title = title;
 		this.carID = carID;
@@ -43,7 +43,7 @@ public class CarInfo {
 		this.description = description;
 		
 	}
-	public String getTite() {
+	public String getTitle() {
 		return title;
 	}
 

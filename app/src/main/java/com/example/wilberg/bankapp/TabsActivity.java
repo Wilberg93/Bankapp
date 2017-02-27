@@ -1,20 +1,20 @@
 package com.example.wilberg.bankapp;
 
 import android.content.Intent;
+import android.graphics.PorterDuff;
 import android.os.Bundle;
+import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
+import android.support.v4.content.ContextCompat;
 import android.support.v4.view.ViewPager;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
-import android.view.Gravity;
 import android.view.View;
-import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.ListView;
@@ -29,7 +29,7 @@ import java.util.List;
 /**
  * Created by WILBERG on 8/18/2016.
  */
-public class MainTabActivity extends AppCompatActivity {
+public class TabsActivity extends AppCompatActivity {
 
     private final static String CAR_ID = "com.example.wilberg.bankapp.CAR_ID";
     private final static String IS_CHECKED_BOOLEAN = "com.example.wilberg.bankapp.IS_CHECKED_BOOLEAN";
@@ -47,30 +47,41 @@ public class MainTabActivity extends AppCompatActivity {
 
     private String[] mDrawerListItems;
 
-    private FavoriteTabFragment favFrag;
-    private SearchTabFragment searchFrag;
+    private PageFavoritesFragment favFrag;
+    private PageSearchParentFragment searchFrag;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.tab_activity_main);
+        setContentView(R.layout.activity_tabs);
+/*
+        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
+        fab.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Log.d("NICE", "NICE");
+
+            }
+        });
+        */
 
         toolbar = (Toolbar) findViewById(R.id.toolbar);
         viewPager = (ViewPager) findViewById(R.id.viewpager);
         tabLayout = (TabLayout) findViewById(R.id.tabs);
-
+        tabLayout.setupWithViewPager(viewPager);
+        setupViewPager(viewPager);
+        /*
         leftDrawer = (DrawerLayout) findViewById(R.id.drawer);
         mDrawerLinearLayout = (LinearLayout) findViewById(R.id.left_drawer);
         mDrawerList = (ListView) findViewById(R.id.optonlist);
         mDrawerListItems = getResources().getStringArray(R.array.drawer_list);
-        mDrawerList.setAdapter(new ArrayAdapter<String>(this, android.R.layout.simple_selectable_list_item, mDrawerListItems));
+        //mDrawerList.setAdapter(new ArrayAdapter<String>(this, android.R.layout.simple_selectable_list_item, mDrawerListItems));
         mDrawerList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int position, long l) {
 
                 leftDrawer.closeDrawers();
-                Intent updateIntent = new Intent(getApplicationContext(), MainTabActivity.class);
+                Intent updateIntent = new Intent(getApplicationContext(), TabsActivity.class);
                 updateIntent.putExtra("sortMethod", Integer.toString(position));
                 startActivity(updateIntent);
 
@@ -86,14 +97,16 @@ public class MainTabActivity extends AppCompatActivity {
 
             }
         });
+        */
         homeTextView = (TextView) findViewById(R.id.homeTextView);
         homeTextView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent homeIntent = new Intent(MainTabActivity.this, MainActivity.class);
+                Intent homeIntent = new Intent(TabsActivity.this, MainActivity.class);
                 startActivity(homeIntent);
             }
         });
+        /*
         sortButton = (Button) findViewById(R.id.sortButton);
         sortButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -112,16 +125,13 @@ public class MainTabActivity extends AppCompatActivity {
 
             }
         });
-
+*/
         setSupportActionBar(toolbar);
         getSupportActionBar().setTitle("");
-        //getSupportActionBar().setTitle("Home");
-        tabLayout.setupWithViewPager(viewPager);
-        setupViewPager(viewPager);
 
     }
 
-    class ViewPagerAdapter extends FragmentPagerAdapter {
+    private class ViewPagerAdapter extends FragmentPagerAdapter {
 
         private final List<Fragment> mFragmentList = new ArrayList<>();
 
@@ -144,14 +154,15 @@ public class MainTabActivity extends AppCompatActivity {
 
     private void setupViewPager(ViewPager viewPager) {
 
-        favFrag = new FavoriteTabFragment();
-        searchFrag = new SearchTabFragment();
+        favFrag = new PageFavoritesFragment();
+        searchFrag = new PageSearchParentFragment();
 
         ViewPagerAdapter adapter = new ViewPagerAdapter(getSupportFragmentManager());
         adapter.addFragment(searchFrag);
         adapter.addFragment(favFrag);
         viewPager.setAdapter(adapter);
-        setIconForTabs();
+        for(int pos=0; pos<adapter.getCount(); pos++)
+            setIconForTabs(pos);
 
         /*
         viewPager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
@@ -181,31 +192,24 @@ public class MainTabActivity extends AppCompatActivity {
     }
 
 
-        public void setIconForTabs() {
+        public void setIconForTabs(int pos) {
 
             int[] tabsIcon = {
 
-                    R.drawable.search_icon,
-                    R.drawable.fav_icon
+                    R.drawable.ic_search_black_24dp,
+                    R.drawable.ic_star_black_24dp
 
             };
-
-            tabLayout.getTabAt(0).setIcon(tabsIcon[0]);
-            tabLayout.getTabAt(1).setIcon(tabsIcon[1]);
-
+            tabLayout.getTabAt(pos).setIcon(tabsIcon[pos]);
+            tabLayout.getTabAt(pos).getIcon().setColorFilter(ContextCompat.getColor(getApplicationContext(), R.color.white), PorterDuff.Mode.SRC_IN);
     }
 
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-
-        if(data.getBooleanExtra(IS_CHECKED_BOOLEAN, false) && !DBTools.getInstance(this).checkForCar(data.getStringExtra(CAR_ID))) {
-            Log.d("HAHA", Boolean.toString(!DBTools.getInstance(this).checkForCar(CAR_ID)));
+        if(data.getBooleanExtra(IS_CHECKED_BOOLEAN, false) && !DBTools.getInstance(this).checkForCar(data.getStringExtra(CAR_ID)))
             favFrag.updateView(data.getStringExtra(CAR_ID));
-    }
         else if(!data.getBooleanExtra(IS_CHECKED_BOOLEAN, false) && !DBTools.getInstance(this).checkForCar(data.getStringExtra(CAR_ID)))
             favFrag.removeView(data.getStringExtra(CAR_ID));
-
-
     }
 }

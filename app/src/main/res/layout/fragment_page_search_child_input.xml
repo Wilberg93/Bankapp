@@ -2,7 +2,6 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/orange_light"
     android:paddingBottom="@dimen/activity_vertical_margin"
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
@@ -48,7 +47,6 @@
         android:hint="@string/equity_edit_text"
         android:digits="0123456789 "
         android:inputType="number" >
-
         <requestFocus />
     </EditText>
 
@@ -58,7 +56,7 @@
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="14dp"
+        android:layout_marginTop="@dimen/padding_large"
         android:text="@string/find_your_car_text_view"
         android:textAppearance="?android:attr/textAppearanceLarge" />
 
@@ -68,7 +66,7 @@
         android:layout_height="wrap_content"
         android:layout_alignLeft="@+id/repaymentEditText"
         android:layout_below="@+id/equityEditText"
-        android:layout_marginTop="15dp"
+        android:layout_marginTop="@dimen/padding_large"
         android:ems="10"
         android:hint="@string/per_month_edit_text" />
 

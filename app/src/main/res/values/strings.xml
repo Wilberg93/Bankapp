@@ -1,29 +1,35 @@
-<?xml version="1.0" encoding="utf-8"?>
 <resources>
 
+    <!-- application strings -->
     <string name="app_name">BankApp</string>
     <string name="action_settings">Settings</string>
 
-    <string name="bank">BANKLOGO</string>
+    <!-- home strings -->
+    <string name="bank">BANK LOGO</string>
+    <string name="residental_button">Residental</string>
+    <string name="car_button">Car</string>
+    <string name="renovation_button">Renovation</string>
 
-    <string name="dwelling_button">Bolig</string>
-    <string name="car_button">Bil</string>
-    <string name="renovation_button">Oppussing</string>
-
-    <string name="find_your_car_text_view">FINN DIN BIL</string>
+    <!-- search input strings -->
+    <string name="find_your_car_text_view">Find Your Car</string>
     <string name="currency_text_view">kr</string>
     <string name="years_text_view">år</string>
     <string name="equity_edit_text">Egenkapital</string>
     <string name="per_month_edit_text">Avsetting per måned</string>
     <string name="repayment_text_view">Nedbetalingstid</string>
     <string name="advanced_search_button">Avansert søk</string>
-    <string name="find_cars_button">FINN BILER</string>
+    <string name="find_cars_button">Find Cars</string>
 
+    <!-- toolbar Strings -->
+    <string name="home_button">HOME</string>
+    <string name="sort_button">SORT</string>
+    <string name="filter_button">FILTER</string>
+
+    <!-- result drawer strings -->
     <string name="drawer_open">Drawer Opened</string>
     <string name="drawer_close">Drawer Closed</string>
-
     <string name="sort_by_text_view">Sort by</string>
-
+    <string name="done_button">DONE</string>
     <string-array name="drawer_list">
         <item>Published</item>
         <item>Model</item>
@@ -36,29 +42,27 @@
         <item>Nearest</item>
     </string-array>
 
-    <string name="home_button">HOME</string>
-    <string name="sort_button">SORT</string>
-    <string name="filter_button">FILTER</string>
-    <string name="done_button">DONE</string>
-
+    <!-- result strings -->
+    <string name="progress_message">Searching...</string>
     <string name="search_result_text_view">%1$s results.</string>
+    <string name="favorited_text_view">Favorited</string>
     <string name="general_info_text_view">Volkswagen Passat</string>
-    <string name="next_page_button">NEXT</string>
-    <string name="back_to_top_button">BACK TO TOP</string>
+    <string name="back_to_top_button">Back to top</string>
 
-
-    <string name="image_result_default">1 of %1$d</string>
-    <string name="image_result_on_page_changed">%1$d of %2$d</string>
-    <string name="about_car_text_view">About The Car</string>
-    <string name="car_description_text_view">Description</string>
-    <string name="price_text_view">Pris: </string>
-    <string name="actual_price_text_view">%1$s kr</string>
+    <!-- result row strings -->
     <string name="model_text_view">Modell: </string>
     <string name="distance_text_view">Km.stand: </string>
     <string name="model_year_text_view">Årsmodell: </string>
 
 
 
+    <!-- description strings -->
+    <string name="viewpager_page_text_view">%1$d of %2$d</string>
+    <string name="price_value_text_view">%1$s kr</string>
+    <string name="about_car_text_view">About The Car</string>
+    <string name="car_description_text_view">Description</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
 
 </resources>

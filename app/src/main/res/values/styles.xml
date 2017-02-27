@@ -2,14 +2,13 @@
 
     <!-- Base application theme. -->
     <style name="AppBaseTheme" parent="android:Theme.Light">
-        <!-- Customize your theme here. -->
+        <!-- Customized theme here. -->
 
     </style>
     <style name="AppTheme" parent="AppBaseTheme">
-
-
-
-
     </style>
+
+
+
 
 </resources>

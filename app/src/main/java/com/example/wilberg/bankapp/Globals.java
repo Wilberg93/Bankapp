@@ -1,6 +1,6 @@
 package com.example.wilberg.bankapp;
 
-import com.example.wilberg.bankapp.Model.CarInfo;
+import com.example.wilberg.bankapp.Model.Car;
 
 import java.util.ArrayList;
 
@@ -9,8 +9,8 @@ import java.util.ArrayList;
  */
 public class Globals {
 
-    private ArrayList<CarInfo> cars;
-    private ArrayList<CarInfo> favoritedCars;
+    private ArrayList<Car> cars;
+    private ArrayList<Car> favoritedCars;
     private int page;
 
     private static Globals globalsInstance;
@@ -30,23 +30,23 @@ public class Globals {
         return globalsInstance;
 
     }
-    public ArrayList<CarInfo> getCars() {
+    public ArrayList<Car> getCars() {
         return cars;
     }
 
-    public void updateCars(ArrayList<CarInfo> currentCars) {
+    public void updateCars(ArrayList<Car> currentCars) {
         cars = currentCars;
     }
 
-    public ArrayList<CarInfo> getFavoritedCars() {
+    public ArrayList<Car> getFavoritedCars() {
         return favoritedCars;
     }
 
-    public void addFavoritedCar(CarInfo selectedCar) {
+    public void addFavoritedCar(Car selectedCar) {
         favoritedCars.add(selectedCar);
     }
 
-    public void removeFavoritedCar(CarInfo selectedCar) {
+    public void removeFavoritedCar(Car selectedCar) {
         favoritedCars.remove(selectedCar);
     }
     public Integer getPage() { return page; }

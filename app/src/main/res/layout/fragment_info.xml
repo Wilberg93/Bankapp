@@ -1,0 +1,202 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+	android:layout_width="match_parent"
+	android:layout_height="match_parent"
+	android:orientation="vertical">
+
+	<ScrollView
+		android:id="@+id/carInfoScrollView"
+		android:layout_width="match_parent"
+		android:layout_height="wrap_content" >
+
+		<RelativeLayout
+			android:id="@+id/LinearLayout1"
+			android:layout_width="match_parent"
+			android:layout_height="wrap_content"
+			android:orientation="vertical">
+
+			<ProgressBar
+				android:id="@+id/progressbar_downloading"
+				style="?android:attr/progressBarStyle"
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				android:layout_centerInParent="true" />
+
+			<android.support.v7.widget.CardView
+				android:id="@+id/mainCardView"
+				android:layout_width="match_parent"
+				android:layout_height="wrap_content">
+
+				<android.support.design.widget.CoordinatorLayout
+					xmlns:app="http://schemas.android.com/apk/res-auto"
+					android:layout_width="match_parent"
+					android:layout_height="match_parent">
+
+					<LinearLayout
+						android:layout_width="match_parent"
+						android:layout_height="match_parent"
+						android:orientation="vertical">
+
+						<RelativeLayout
+							android:id="@+id/RelativeLayout1"
+							android:layout_width="match_parent"
+							android:layout_height="match_parent" >
+
+							<ImageView
+								android:id="@+id/carImageView"
+								android:layout_width="match_parent"
+								android:layout_height="match_parent"
+								android:scaleType="centerCrop"
+								android:src="@drawable/fav_icon" />
+
+							<android.support.v4.view.ViewPager
+								android:id="@+id/viewpager"
+								android:layout_width="wrap_content"
+								android:layout_height="300dp" />
+
+							<TextView
+								android:id="@+id/pageDisplayTextView"
+								android:layout_width="60dp"
+								android:layout_height="35dp"
+								android:textColor="@color/white"
+								android:textStyle="bold"
+								android:gravity="center"
+								android:background="@color/light_grey_transparent"
+								android:layout_marginTop="@dimen/margin_large"
+								android:layout_marginRight="@dimen/margin_large"
+								android:layout_marginEnd="@dimen/margin_large"
+								android:layout_alignParentRight="true"
+								android:layout_alignParentEnd="true" />
+						</RelativeLayout>
+
+						<RelativeLayout
+							android:layout_width="match_parent"
+							android:layout_height="match_parent"
+							android:layout_below="@+id/RelativeLayout1">
+
+							<TextView
+								android:id="@+id/carTitleTextView"
+								android:layout_width="wrap_content"
+								android:layout_height="wrap_content"
+								android:ems="8"
+								android:singleLine="true"
+								android:layout_marginLeft="@dimen/margin_large"
+								android:layout_marginStart="@dimen/margin_large"
+								android:layout_marginTop="@dimen/margin_medium"
+								style="@style/TextView.Larger" />
+
+							<CheckBox
+								android:id="@+id/isFavoritedCheckBox"
+								style="?android:attr/starStyle"
+								android:layout_width="wrap_content"
+								android:layout_height="wrap_content"
+								android:layout_alignParentEnd="true"
+								android:layout_alignParentRight="true"
+								android:layout_marginRight="@dimen/margin_large"
+								android:layout_marginEnd="@dimen/margin_large"
+								android:layout_marginTop="@dimen/margin_medium" />
+
+							<ImageView
+								android:id="@+id/launchIcon"
+								android:layout_width="wrap_content"
+								android:layout_height="wrap_content"
+								android:background="@drawable/ic_launch_black_24dp"
+								android:layout_alignParentEnd="true"
+								android:layout_alignParentRight="true"
+								android:clickable="true" />
+
+							<TextView
+								android:id="@+id/carPriceTextView"
+								android:layout_width="wrap_content"
+								android:layout_height="wrap_content"
+								android:layout_margin="@dimen/margin_large"
+								android:layout_below="@id/carTitleTextView"
+								style="@style/TextView.Large" />
+
+							<TextView
+								android:id="@+id/detailedTitleTextView"
+								android:layout_width="wrap_content"
+								android:layout_height="wrap_content"
+								android:layout_marginBottom="@dimen/margin_medium"
+								android:textSize="@dimen/font_normal"
+								android:layout_marginLeft="@dimen/margin_large"
+								android:layout_marginStart="@dimen/margin_large"
+								android:layout_below="@+id/carPriceTextView" />
+						</RelativeLayout>
+					</LinearLayout>
+
+					<android.support.design.widget.FloatingActionButton
+						android:id="@+id/favoriteFAB"
+						android:layout_width="wrap_content"
+						android:layout_height="wrap_content"
+						android:layout_marginBottom="@dimen/margin_small"
+						android:layout_marginRight="@dimen/margin_large"
+						android:clickable="true"
+						app:layout_anchor="@id/RelativeLayout1"
+						app:layout_anchorGravity="bottom|right|end" />
+
+				</android.support.design.widget.CoordinatorLayout>
+			</android.support.v7.widget.CardView>
+
+			<TextView
+				android:id="@+id/carAboutTextView"
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				android:layout_marginBottom="@dimen/margin_small"
+				android:layout_marginLeft="@dimen/margin_large"
+				android:layout_marginStart="@dimen/margin_large"
+				android:layout_marginTop="@dimen/margin_larger"
+				android:layout_below="@id/mainCardView"
+				android:text="@string/about_car_text_view"
+				style="@style/largeTextView" />
+
+			<android.support.v7.widget.CardView
+				android:id="@+id/specsCardView"
+				android:layout_width="match_parent"
+				android:layout_height="wrap_content"
+				android:layout_below="@id/carAboutTextView" >
+
+				<TableLayout
+					android:id="@+id/specsTableLayout"
+					android:layout_width="match_parent"
+					android:layout_height="wrap_content"
+					android:stretchColumns="yes"
+					android:layout_marginLeft="@dimen/margin_large"
+					android:layout_marginStart="@dimen/margin_large"
+					android:layout_marginTop="@dimen/margin_medium"
+					android:layout_marginBottom="@dimen/margin_medium"/>
+			</android.support.v7.widget.CardView>
+
+			<TextView
+				android:id="@+id/carDescTitleTextView"
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				android:layout_marginTop="@dimen/margin_larger"
+				android:layout_marginLeft="@dimen/margin_large"
+				android:layout_marginStart="@dimen/margin_large"
+				android:layout_marginBottom="@dimen/margin_small"
+				android:layout_below="@id/specsCardView"
+				android:text="@string/car_description_text_view"
+				style="@style/largeTextView" />
+
+			<android.support.v7.widget.CardView
+				android:id="@+id/descCardView"
+				android:layout_width="match_parent"
+				android:layout_height="wrap_content"
+				android:layout_below="@id/carDescTitleTextView" >
+
+					<TextView
+						android:id="@+id/carDescTextView"
+						android:layout_width="match_parent"
+						android:layout_height="wrap_content"
+						android:layout_marginLeft="@dimen/margin_large"
+						android:layout_marginStart="@dimen/margin_large"
+						android:layout_marginTop="@dimen/margin_medium"
+						android:layout_marginRight="@dimen/margin_large"
+						android:layout_marginEnd="@dimen/margin_large"
+						android:layout_marginBottom="@dimen/margin_medium"
+						android:text="BLA BLA BLA" />
+			</android.support.v7.widget.CardView>
+		</RelativeLayout>
+	</ScrollView>
+</RelativeLayout>

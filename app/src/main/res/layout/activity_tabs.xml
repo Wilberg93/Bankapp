@@ -1,0 +1,109 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".TabsActivity"
+    android:orientation="vertical"
+    android:fitsSystemWindows="true"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+
+        <!--
+            <android.support.v4.widget.DrawerLayout
+            android:id="@+id/drawer"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            tools:openDrawer="start">
+            -->
+
+        <android.support.design.widget.CoordinatorLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <android.support.design.widget.AppBarLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar">
+
+                <include
+                    android:id="@+id/toolbar"
+                    layout="@layout/toolbar"></include>
+
+                <android.support.design.widget.TabLayout
+                    android:id="@+id/tabs"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@color/colorPrimary"
+                    app:tabMode="fixed"
+                    app:tabGravity="fill"
+                    app:tabIndicatorColor="@color/colorAccent" />
+
+            </android.support.design.widget.AppBarLayout>
+
+            <android.support.v4.view.ViewPager
+                android:id="@+id/viewpager"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                        app:layout_behavior="@string/appbar_scrolling_view_behavior" />
+
+            <android.support.design.widget.FloatingActionButton
+                android:id="@+id/fab"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="end|bottom"
+                android:layout_margin="@dimen/margin_medium"
+                app:layout_behavior="com.example.wilberg.bankapp.ScrollingFABBehavior"/>
+            
+        </android.support.design.widget.CoordinatorLayout>
+        <!--
+                <LinearLayout
+                    android:id="@+id/left_drawer"
+                    android:orientation="vertical"
+                    android:layout_width="305dp"
+                    android:layout_height="match_parent"
+                    android:layout_gravity="start"
+                    android:background="@color/white"
+                    >
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="50dp">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/sort_by_text_view"
+                            android:textSize="@dimen/font_normal"
+                            android:textColor="@color/black"
+                            android:textStyle="bold"
+                            android:padding="@dimen/padding_medium"
+                            android:layout_weight="3"
+                            android:id="@+id/sort_by_text_view" />
+
+                        <Button
+                            android:id="@+id/doneDrawerButton"
+                            style="@style/button"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/done_button"
+                            android:layout_gravity="right"/>
+
+
+
+                    </LinearLayout>
+
+
+
+                    <ListView
+                        android:id="@+id/optonlist"
+                        android:background="@android:color/white"
+                        android:layout_width="305dp"
+                        android:layout_height="match_parent"
+                        android:layout_gravity="start"/>
+
+
+                </LinearLayout>
+                -->
+
+
+        <!-- </android.support.v4.widget.DrawerLayout> -->
+</LinearLayout>

@@ -15,7 +15,7 @@
             android:id="@+id/carImageView"
             android:layout_width="150dp"
             android:layout_height="150dp"
-            android:scaleType="fitXY"/>
+            android:scaleType="fitXY" />
 
         <LinearLayout
             android:id="@+id/linearLayout2"
@@ -64,19 +64,19 @@
                     android:layout_height="wrap_content"
                     android:ems="10"
                     android:maxLines="2"
-                    android:textColor="@color/black"
                     android:text="@string/general_info_text_view"
                     android:paddingLeft="@dimen/padding_medium"
-                    android:paddingBottom="@dimen/padding_small" />
+                    android:paddingBottom="@dimen/padding_small"
+                    style="@style/ContentText"
+                />
 
                 <TextView
                     android:id="@+id/priceTextView"
-                    android:textSize="@dimen/medium_font_size"
-                    android:textColor="@color/black"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:paddingLeft="@dimen/padding_medium"
-                    android:paddingBottom="@dimen/padding_small" />
+                    android:paddingBottom="@dimen/padding_small"
+                    style="@style/largeTextView"/>
 
                 <TextView
                     android:id="@+id/yearTextView"

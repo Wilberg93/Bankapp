@@ -1,34 +1,33 @@
 <?xml version="1.0" encoding="utf-8"?>
 <TableLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/TableLayout1"
+    android:id="@+id/TableLayout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".FavoriteTabFragment" >
+    tools:context=".PageFavoritesFragment" >
 
     <TableRow
-        android:id="@+id/tableRow1"
         android:layout_width="match_parent"
         android:layout_height="wrap_content" >
 
         <TextView
             android:id="@+id/resultCountTextView"
-            android:text="Favorited"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="4"
-            android:paddingLeft="5dp"
-            android:paddingTop="5dp" />
+            android:paddingLeft="@dimen/padding_small"
+            android:paddingTop="@dimen/padding_small"
+            android:text="@string/favorited_text_view"
+            android:textColor="@color/colorPrimary"/>
 
     </TableRow>
 
     <TableRow
-        android:id="@+id/tableRow2"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_weight="1" >
 
-        <ScrollView
+        <android.support.v4.widget.NestedScrollView
             android:id="@+id/carScrollView"
             android:layout_weight="1"
             android:layout_width="match_parent"
@@ -38,9 +37,8 @@
                 android:id="@+id/carTableScrollView"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:stretchColumns="yes" >
-            </TableLayout>
-        </ScrollView>
+                android:stretchColumns="yes" />
+        </android.support.v4.widget.NestedScrollView>
 
     </TableRow>
 
