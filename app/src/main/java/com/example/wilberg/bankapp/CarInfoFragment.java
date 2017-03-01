@@ -11,11 +11,14 @@ import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.Fragment;
 import android.support.v4.content.ContextCompat;
 import android.support.v4.view.PagerAdapter;
+import android.support.v4.view.ViewCompat;
 import android.support.v4.view.ViewPager;
+import android.transition.Transition;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.ViewTreeObserver;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
 import android.widget.ImageView;
@@ -25,7 +28,10 @@ import android.widget.TextView;
 
 import com.example.wilberg.bankapp.DB.DBTools;
 import com.example.wilberg.bankapp.Model.Car;
+
 import com.squareup.picasso.Picasso;
+import com.squareup.picasso.Callback;
+import com.squareup.picasso.RequestCreator;
 
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
@@ -40,6 +46,20 @@ public class CarInfoFragment extends Fragment {
 
     private final static String CAR_ID = "com.example.wilberg.bankapp.CAR_ID";
     private final static String IS_CHECKED_BOOLEAN = "com.example.wilberg.bankapp.";
+
+    private final Callback mImageCallback = new Callback() {
+        @Override
+        public void onSuccess() {
+            Log.d("worksLEL", "works");
+            startPostponedEnterTransition2();
+        }
+
+        @Override
+        public void onError() {
+            Log.d("worksLEL", "works");
+            startPostponedEnterTransition2();
+        }
+    };
 
     private String carID;
     private Boolean mDuelPane = false;
@@ -64,8 +84,9 @@ public class CarInfoFragment extends Fragment {
     ProgressBar progressBar;
 
     /*Use newInstance to pass arguments to fragment*/
-    public static CarInfoFragment newInstance(String carID) {
+    public static CarInfoFragment newInstance(int position) {
         Bundle args = new Bundle();
+        String carID = Globals.getInstance().getCars().get(position).getCarID();
         args.putString(CAR_ID, carID);
         CarInfoFragment infoFragment = new CarInfoFragment();
         infoFragment.setArguments(args);
@@ -83,7 +104,6 @@ public class CarInfoFragment extends Fragment {
 
         View infoFragmentContainer = getActivity().findViewById(R.id.infoFragmentContainer);
         mDuelPane = (infoFragmentContainer != null) && (infoFragmentContainer.getVisibility() == View.VISIBLE);
-        Log.d("SHUURE", Boolean.toString(mDuelPane));
         if(mDuelPane)
             launchIcon.setVisibility(View.VISIBLE);
 
@@ -92,13 +112,49 @@ public class CarInfoFragment extends Fragment {
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        return inflater.inflate(R.layout.fragment_info, container, false);
+        View rootView =  inflater.inflate(R.layout.fragment_info, container, false);
+
+        carID = getCarID();
+        dbTools = DBTools.getInstance(getContext());
+        selectedCar = dbTools.getFavCar(carID);
+        if(selectedCar == null) {
+            for (Car car : Globals.getInstance().getCars()) {
+                if (car.getCarID().equals(carID)) {
+                    selectedCar = car;
+                    break;
+                }
+            }
+        }
+
+        final ImageView backgroundImage = (ImageView) rootView.findViewById(R.id.details_background_image);
+        carImageView = (ImageView) rootView.findViewById(R.id.carImageView);
+        carTitleTextView = (TextView) rootView.findViewById(R.id.carTitleTextView);
+        carImageView.setTransitionName("carImage" + carID);
+        carTitleTextView.setTransitionName("carTitle" + selectedCar.getTitle());
+        carTitleTextView.setText(selectedCar.getTitle());
+
+
+        RequestCreator albumImageRequest = Picasso.with(getActivity()).load(selectedCar.getMainImgURL());
+        RequestCreator backgroundImageRequest = Picasso.with(getActivity()).load(selectedCar.getMainImgURL()).fit().centerCrop();
+
+            albumImageRequest.noFade();
+            backgroundImageRequest.noFade();
+            backgroundImage.setAlpha(0f);
+            getActivity().getWindow().getSharedElementEnterTransition().addListener(new TransitionListenerAdapter() {
+                @Override
+                public void onTransitionEnd(Transition transition) {
+                    backgroundImage.animate().setDuration(1000).alpha(1f);
+                }
+            });
+
+        albumImageRequest.into(carImageView, mImageCallback);
+        backgroundImageRequest.into(backgroundImage);
+        return rootView;
     }
 
     @Override
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-
         launchIcon = (ImageView) view.findViewById(R.id.launchIcon);
         launchIcon.setVisibility(View.GONE);
         launchIcon.bringToFront();
@@ -106,7 +162,6 @@ public class CarInfoFragment extends Fragment {
         progressBar = (ProgressBar) view.findViewById(R.id.progressbar_downloading);
         progressBar.getIndeterminateDrawable().setColorFilter(ContextCompat.getColor(getContext(), R.color.colorAccent), PorterDuff.Mode.MULTIPLY);
 
-        carTitleTextView = (TextView) view.findViewById(R.id.carTitleTextView);
         detailedTitleTextView = (TextView) view.findViewById(R.id.detailedTitleTextView);
         carPriceTextView = (TextView) view.findViewById(R.id.carPriceTextView);
         pageDisplayTextView = (TextView) view.findViewById(R.id.pageDisplayTextView);
@@ -129,10 +184,9 @@ public class CarInfoFragment extends Fragment {
                 }
             }
         }
-        carTitleTextView.setText(selectedCar.getTitle());
         carPriceTextView.setText(getString(R.string.price_value_text_view, selectedCar.getPrice()));
-        carImageView = (ImageView) view.findViewById(R.id.carImageView);
-        carImageView.setTransitionName(transitionName);
+        //carImageView = (ImageView) view.findViewById(R.id.carImageView);
+
         //Picasso.with(getActivity()).load(selectedCar.getMainImgURL()).fit().into(carImageView);
 
         if(isFavorited(selectedCar)) {
@@ -195,7 +249,7 @@ public class CarInfoFragment extends Fragment {
                     imgURLs.add(outerClass.select("img.centered-image").get(counter).attr("data-src"));
                     counter++;
                 }
-                selectedCar.setTitle(title);
+                selectedCar.setName(detailedTitle);
                 selectedCar.setImgURLs(imgURLs);
                 selectedCar.setSpecs(specs);
                 selectedCar.setDescription(carDescription);
@@ -226,8 +280,6 @@ public class CarInfoFragment extends Fragment {
             ImagePagerAdapter adapter = new ImagePagerAdapter(selectedCar);
             final int totalImages = adapter.getCount();
             pageDisplayTextView.setText(getString(R.string.viewpager_page_text_view, 1, totalImages));
-            if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP)
-                startPostponedEnterTransition();
             /*
             viewPager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
 
@@ -378,10 +430,14 @@ public class CarInfoFragment extends Fragment {
         return dbTools.checkForCar(selectedCar.getCarID());
     }
 
-    public void setTransitionName(String transitionName) {
-        this.transitionName = transitionName;
-    }
-    public String gettTransitionName() {
-        return transitionName;
+    private void startPostponedEnterTransition2() {
+            carImageView.getViewTreeObserver().addOnPreDrawListener(new ViewTreeObserver.OnPreDrawListener() {
+                @Override
+                public boolean onPreDraw() {
+                    carImageView.getViewTreeObserver().removeOnPreDrawListener(this);
+                    getActivity().startPostponedEnterTransition();
+                    return true;
+                }
+            });
     }
 }

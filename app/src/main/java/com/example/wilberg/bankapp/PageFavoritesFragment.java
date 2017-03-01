@@ -89,14 +89,14 @@ public class PageFavoritesFragment extends Fragment {
         inflatedTableRow.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
+                /*
                 CarInfoFragment carInfoFragment = (CarInfoFragment)getFragmentManager().findFragmentById(R.id.infoFragmentContainer);
                 String selectedCarID = view.getTag().toString();
-                /* If different row is clicked */
+                //If different row is clicked
                 if(carInfoFragment == null || !carInfoFragment.getCarID().equals(selectedCarID)) {
-                    /* If in landscape mode */
+                    /* If in landscape mode
                     if (mDuelPane) {
-                        /* Pass carID to InfoFragment */
+                        // Pass carID to InfoFragment
                         carInfoFragment = CarInfoFragment.newInstance(selectedCarID);
 
                         FragmentTransaction ft = getFragmentManager().beginTransaction();
@@ -105,19 +105,20 @@ public class PageFavoritesFragment extends Fragment {
                         ft.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_FADE);
                         ft.commit();
                     } else {
-                        /* Launch a new Activity to show our DetailsFragment */
+                        // Launch a new Activity to show our DetailsFragment
                         Intent intent = new Intent();
 
-                        /* Define the class Activity to call */
+                        /* Define the class Activity to call
                         intent.setClass(getActivity(), CarInfoActivity.class);
 
-                        /* Pass along the currently selected index assigned to the keyword index */
+                        /* Pass along the currently selected index assigned to the keyword index
                         intent.putExtra(CAR_ID, selectedCarID);
 
-                        /* Call for the Activity to open */
+                        /* Call for the Activity to open
                         startActivity(intent);
                     }
                 }
+                                */
             }
         });
     }

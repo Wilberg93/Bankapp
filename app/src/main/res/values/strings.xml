@@ -5,7 +5,7 @@
     <string name="action_settings">Settings</string>
 
     <!-- home strings -->
-    <string name="bank">BANK LOGO</string>
+    <string name="bank">Bank Logo</string>
     <string name="residental_button">Residental</string>
     <string name="car_button">Car</string>
     <string name="renovation_button">Renovation</string>
@@ -21,15 +21,15 @@
     <string name="find_cars_button">Find Cars</string>
 
     <!-- toolbar Strings -->
-    <string name="home_button">HOME</string>
-    <string name="sort_button">SORT</string>
-    <string name="filter_button">FILTER</string>
+    <string name="home_button">Home</string>
+    <string name="sort_button">Sort</string>
+    <string name="filter_button">Filter</string>
 
     <!-- result drawer strings -->
     <string name="drawer_open">Drawer Opened</string>
     <string name="drawer_close">Drawer Closed</string>
     <string name="sort_by_text_view">Sort by</string>
-    <string name="done_button">DONE</string>
+    <string name="done_button">Done</string>
     <string-array name="drawer_list">
         <item>Published</item>
         <item>Model</item>
@@ -54,15 +54,14 @@
     <string name="distance_text_view">Km.stand: </string>
     <string name="model_year_text_view">Årsmodell: </string>
 
-
-
     <!-- description strings -->
     <string name="viewpager_page_text_view">%1$d of %2$d</string>
     <string name="price_value_text_view">%1$s kr</string>
     <string name="about_car_text_view">About The Car</string>
     <string name="car_description_text_view">Description</string>
 
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <!-- transition strings -->
+    <string name="image_transition">imageTransition%1$s</string>
+    <string name="title_transition">imageTransition%1$s</string>
 
 </resources>

@@ -3,13 +3,14 @@ package com.example.wilberg.bankapp;
 import com.example.wilberg.bankapp.Model.Car;
 
 import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Created by WILBERG on 8/20/2016.
  */
 public class Globals {
 
-    private ArrayList<Car> cars;
+    private List<Car> cars;
     private ArrayList<Car> favoritedCars;
     private int page;
 
@@ -30,11 +31,11 @@ public class Globals {
         return globalsInstance;
 
     }
-    public ArrayList<Car> getCars() {
+    public List<Car> getCars() {
         return cars;
     }
 
-    public void updateCars(ArrayList<Car> currentCars) {
+    public void updateCars(List<Car> currentCars) {
         cars = currentCars;
     }
 

@@ -155,4 +155,9 @@ public class Car {
 
 	public void setDescription(String description) { this.description = description; }
 
+	public static ArrayList<Car> createCarsList() {
+		return null;
+	}
+
+
 }

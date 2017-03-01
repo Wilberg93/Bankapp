@@ -18,7 +18,6 @@ import android.widget.ImageView;
 public class PageSearchParentFragment extends Fragment implements PageSearchChildInputFragment.OnFindButtonClickedListener, PageSearchChildResultFragment.OnRowClickedListener{
 
     ImageView mProductImage;
-    private String displayingCar;
 
     PageSearchChildResultFragment childFragment;
     private ViewGroup mRootView;
@@ -55,8 +54,6 @@ public class PageSearchParentFragment extends Fragment implements PageSearchChil
 
     @Override
     public void onRowClicked(String selectedCarID, ImageView carImage) {
-        displayingCar = selectedCarID;
-
 
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
                 setSharedElementReturnTransition(TransitionInflater.from(getActivity()).inflateTransition(android.R.transition.slide_right));
@@ -68,18 +65,8 @@ public class PageSearchParentFragment extends Fragment implements PageSearchChil
 
 
                         /* Launch a new Activity to show our DetailsFragment */
-                CarInfoFragment fragment = CarInfoFragment.newInstance(selectedCarID);
-                fragment.setTransitionName(carImage.getTransitionName());
-                setSharedElementReturnTransition(TransitionInflater.from(getActivity()).inflateTransition(R.transition.change_image_transform));
-                setExitTransition(TransitionInflater.from(getActivity()).inflateTransition(android.R.transition.explode));
+                CarInfoFragment fragment = CarInfoFragment.newInstance(0);
 
-                fragment.setSharedElementEnterTransition(TransitionInflater.from(getActivity()).inflateTransition(R.transition.change_image_transform));
-                fragment.setEnterTransition(TransitionInflater.from(getActivity()).inflateTransition(android.R.transition.explode));
-
-                //fragment.setEnterTransition(TransitionInflater.from(getActivity()).inflateTransition(android.R.transition.slide_right));
-
-
-                Log.d(carImage.getTransitionName(), fragment.gettTransitionName());
                 FragmentTransaction ft = getFragmentManager().beginTransaction()
                         .addSharedElement(mProductImage, carImage.getTransitionName())
                         .replace(R.id.infoFragmentContainer, fragment)
@@ -98,8 +85,7 @@ public class PageSearchParentFragment extends Fragment implements PageSearchChil
 
     @Override
     public void onUISetup(String carID) {
-        displayingCar = carID;
-        CarInfoFragment carInfoFragment = CarInfoFragment.newInstance(carID);
+        CarInfoFragment carInfoFragment = CarInfoFragment.newInstance(0);
 
         FragmentTransaction ft = getFragmentManager().beginTransaction();
         ft.replace(R.id.infoFragmentContainer, carInfoFragment);
