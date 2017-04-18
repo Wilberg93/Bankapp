@@ -19,7 +19,7 @@ public class DBTools extends SQLiteOpenHelper{
     /* LOG TAG */
     private static final String  TAG = "Database Error";
 
-    private static DBTools dbtInstance;
+    private static DBTools dbInstance;
 
     /* Database Info */
     private static final String DATABASE_NAME = "findyourcar.db";
@@ -41,9 +41,9 @@ public class DBTools extends SQLiteOpenHelper{
     public static synchronized DBTools getInstance(Context context) {
         /* Use singleton with application context to avoid */
         /* leaking an activity's context */
-        if(dbtInstance == null)
-            dbtInstance = new DBTools(context.getApplicationContext());
-        return dbtInstance;
+        if(dbInstance == null)
+            dbInstance = new DBTools(context.getApplicationContext());
+        return dbInstance;
     }
 
     /* private constructor, make call to getInstance instead */

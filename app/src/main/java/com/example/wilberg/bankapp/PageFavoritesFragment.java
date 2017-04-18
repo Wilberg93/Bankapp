@@ -2,11 +2,9 @@ package com.example.wilberg.bankapp;
 
 
 import android.content.Context;
-import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentTransaction;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -21,13 +19,9 @@ import com.squareup.picasso.Picasso;
 
 public class PageFavoritesFragment extends Fragment {
 
-    private final static String CAR_ID = "com.example.wilberg.bankapp.CAR_ID";
+    private boolean mDuelPane;
 
-    View view;
-    private TableLayout carTableScrollView;
-    ImageView carImageView;
-
-    boolean mDuelPane;
+    private TableLayout mCarTableLayout;
 
     public PageFavoritesFragment() {
         // Required empty public constructor
@@ -43,8 +37,7 @@ public class PageFavoritesFragment extends Fragment {
     }
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         return inflater.inflate(R.layout.fragment_page_favorites, container, false);
     }
 
@@ -52,12 +45,9 @@ public class PageFavoritesFragment extends Fragment {
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
-        carTableScrollView = (TableLayout) view.findViewById(R.id.carTableScrollView);
-        setUpUI();
-    }
+        mCarTableLayout = (TableLayout) view.findViewById(R.id.carTableScrollView);
 
-    public void setUpUI() {
-        carTableScrollView.removeAllViews();
+        //Inflate scrollView
         for(Car theCar: DBTools.getInstance(getContext()).getFavCars())
             inflateScrollView(theCar);
     }
@@ -67,26 +57,20 @@ public class PageFavoritesFragment extends Fragment {
         LayoutInflater inflater = (LayoutInflater) getActivity().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         View newCarRow = inflater.inflate(R.layout.search_result_row, null);
 
-        TextView carInfoTextView = (TextView) newCarRow.findViewById(R.id.carInfoTextView);
-        TextView locationTextView = (TextView) newCarRow.findViewById(R.id.locationTextView);
-        TextView priceTextView = (TextView) newCarRow.findViewById(R.id.priceTextView);
-        TextView distanceTextView = (TextView) newCarRow.findViewById(R.id.distanceTextView);
-        TextView yearTextView = (TextView) newCarRow.findViewById(R.id.yearTextView);
-        TableRow inflatedTableRow = (TableRow) newCarRow.findViewById(R.id.tableRow1);
+        ((TextView) newCarRow.findViewById(R.id.carInfoTextView)).setText(car.getName());
+        ((TextView) newCarRow.findViewById(R.id.locationTextView)).setText(car.getLocation());;
+        ((TextView) newCarRow.findViewById(R.id.priceTextView)).setText(getString(R.string.price_value_text_view, car.getPrice()));
+        ((TextView) newCarRow.findViewById(R.id.distanceTextView)).append(car.getDistance());
+        ((TextView) newCarRow.findViewById(R.id.yearTextView)).append(car.getYear());
 
-        carImageView = (ImageView) newCarRow.findViewById(R.id.carImageView);
+        ImageView carImageView = (ImageView) newCarRow.findViewById(R.id.carImageView);
         Picasso.with(getActivity()).load(car.getMainImgURL()).fit().into(carImageView);
 
-        carInfoTextView.setText(car.getName());
-        yearTextView.append(car.getYear());
-        distanceTextView.append(car.getDistance());
-        locationTextView.setText(car.getLocation());
-        priceTextView.setText(getString(R.string.price_value_text_view, car.getPrice()));
 
         newCarRow.setTag(car.getCarID());
-        carTableScrollView.addView(newCarRow);
+        mCarTableLayout.addView(newCarRow);
 
-        inflatedTableRow.setOnClickListener(new View.OnClickListener() {
+        newCarRow.findViewById(R.id.tableRow1).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 /*
@@ -128,7 +112,7 @@ public class PageFavoritesFragment extends Fragment {
     }
 
     public void removeView(String carID) {
-        carTableScrollView.removeView(carTableScrollView.findViewWithTag(carID));
+        mCarTableLayout.removeView(mCarTableLayout.findViewWithTag(carID));
 
     }
 

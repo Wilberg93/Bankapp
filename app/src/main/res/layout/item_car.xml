@@ -5,7 +5,10 @@
     android:id="@+id/linearLayout"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:orientation="horizontal" >
+    android:background="?android:attr/selectableItemBackground"
+    android:orientation="horizontal"
+    android:layout_marginTop="@dimen/padding_medium"
+    android:layout_marginBottom="@dimen/padding_medium">
 
     <ImageView
         android:id="@+id/carImageView"
@@ -17,7 +20,8 @@
         android:id="@+id/linearLayout2"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:paddingLeft="5dp"
+        android:layout_marginRight="@dimen/keyline_1"
+        android:layout_marginEnd="@dimen/keyline_1"
         android:orientation="vertical" >
 
 
@@ -35,7 +39,7 @@
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="3"
-                android:ems="10"
+                android:ems="8"
                 android:singleLine="true"
                 android:textColor="@color/black"
                 android:paddingTop="@dimen/padding_small" />
@@ -47,7 +51,8 @@
                 android:layout_weight="2"
                 android:ems="10"
                 android:singleLine="true"
-                android:paddingLeft="@dimen/padding_large"
+                android:gravity="right"
+                android:paddingLeft="@dimen/padding_medium"
                 android:paddingTop="@dimen/padding_small"
                 android:text="oslo" />
 
@@ -78,7 +83,7 @@
             android:id="@+id/yearTextView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/model_year_text_view"
+            android:singleLine="true"
             android:paddingLeft="@dimen/padding_medium" />
 
         <TextView

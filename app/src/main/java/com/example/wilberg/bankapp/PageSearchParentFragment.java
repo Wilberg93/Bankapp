@@ -1,31 +1,24 @@
 package com.example.wilberg.bankapp;
 
-import android.content.Context;
+import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
-import android.transition.Fade;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
-import android.transition.TransitionInflater;
-import android.transition.TransitionManager;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 
-public class PageSearchParentFragment extends Fragment implements PageSearchChildInputFragment.OnFindButtonClickedListener, PageSearchChildResultFragment.OnRowClickedListener{
+public class PageSearchParentFragment extends Fragment implements PageSearchChildInputFragment.OnFindButtonClickedListener, PageSearchChildResultFragment.OnRowClickedListener,
+        OnConnectionErrorListener, ConnectionErrorFragment.OnReconnectListener{
 
-    ImageView mProductImage;
+    private PageSearchChildResultFragment mChildResultFragment;
 
-    PageSearchChildResultFragment childFragment;
-    private ViewGroup mRootView;
-
-    public PageSearchParentFragment() {
-        // Required empty public constructor
-    }
-
+        public PageSearchParentFragment() {
+            // Required empty public constructor.
+        }
 
     @Nullable
     @Override
@@ -36,60 +29,85 @@ public class PageSearchParentFragment extends Fragment implements PageSearchChil
     @Override
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-                insertChildFragment();
+        insertChildFragment();
+        //TODO: Handle dual pane.
+        if(false) displayFirstCar("");
     }
 
     public void insertChildFragment() {
-        PageSearchChildInputFragment childFragment = new PageSearchChildInputFragment();
-        FragmentTransaction ft = getChildFragmentManager().beginTransaction();
-        ft.replace(R.id.child_fragment_container, childFragment).commit();
+        // Add input child fragment to the container.
+        PageSearchChildInputFragment childInputFragment = new PageSearchChildInputFragment();
+        getChildFragmentManager().beginTransaction()
+                .add(R.id.childFragmentContainer, childInputFragment)
+                .addToBackStack("input")
+                .commit();
+    }
+
+    public void updateSortMethod(String sortMethod) {
+        // Update sort method.
+        mChildResultFragment = PageSearchChildResultFragment.newInstance("1000", sortMethod);
+        getChildFragmentManager().beginTransaction()
+                .replace(R.id.childFragmentContainer, mChildResultFragment)
+                .commit();
     }
 
     @Override
-    public void onInputReady(String inputValue) {
-        childFragment = PageSearchChildResultFragment.newInstance("1000", "0");
-        FragmentTransaction ft = getChildFragmentManager().beginTransaction();
-        ft.replace(R.id.child_fragment_container, childFragment).commit();
+    public void onInputReady(String calculatedPriceLimit) {
+        // Instantiate PageSearchChildResultFragment with calculated value.
+        mChildResultFragment = PageSearchChildResultFragment.newInstance(calculatedPriceLimit, "0");
+        getChildFragmentManager().beginTransaction()
+                .replace(R.id.childFragmentContainer, mChildResultFragment)
+                .addToBackStack("result")
+                .commit();
     }
 
     @Override
     public void onRowClicked(String selectedCarID, ImageView carImage) {
+        // Called when car in recyclerView is clicked and device is in dual pane.
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+            // Start transaction with material transition.
 
-            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-                setSharedElementReturnTransition(TransitionInflater.from(getActivity()).inflateTransition(android.R.transition.slide_right));
-                setExitTransition(TransitionInflater.from(getActivity()).inflateTransition(android.R.transition.slide_right));
-                LayoutInflater inflater = (LayoutInflater) getActivity().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+            //setSharedElementReturnTransition(TransitionInflater.from(getActivity()).inflateTransition(android.R.transition.slide_right));
+            //setExitTransition(TransitionInflater.from(getActivity()).inflateTransition(android.R.transition.slide_right));
 
-                final View mView = inflater.inflate(R.layout.fragment_page_search_child_result, null);
-                mProductImage = carImage;
+            CarInfoFragment fragment = CarInfoFragment.newInstance(getFragmentManager(),0);
 
-
-                        /* Launch a new Activity to show our DetailsFragment */
-                CarInfoFragment fragment = CarInfoFragment.newInstance(0);
-
-                FragmentTransaction ft = getFragmentManager().beginTransaction()
-                        .addSharedElement(mProductImage, carImage.getTransitionName())
-                        .replace(R.id.infoFragmentContainer, fragment)
-                        .addToBackStack("transaction");
-                ft.commit();
-                // FragmentTransaction ft = getFragmentManager().beginTransaction().addSharedElement(carImage, "carImage");
-                //ft.replace(R.id.infoFragmentContainer, carInfoFragment)
-                //       .addToBackStack("transaction");
-                //ft.commit();
-
+            FragmentTransaction ft = getFragmentManager().beginTransaction()
+                    .addSharedElement(carImage, carImage.getTransitionName())
+                    .replace(R.id.infoFragmentContainer, fragment)
+                    .addToBackStack("CarInfoTransaction");
+            ft.commit();
 
         } else {
             /* TODO:Code for devices older than LOLLIPOP */
         }
     }
 
-    @Override
-    public void onUISetup(String carID) {
-        CarInfoFragment carInfoFragment = CarInfoFragment.newInstance(0);
+    public void displayFirstCar(String carID) {
+        CarInfoFragment carInfoFragment = CarInfoFragment.newInstance(getFragmentManager(), 0);
 
-        FragmentTransaction ft = getFragmentManager().beginTransaction();
-        ft.replace(R.id.infoFragmentContainer, carInfoFragment);
-        ft.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_FADE);
-        ft.commit();
+        getFragmentManager().beginTransaction()
+                .replace(R.id.infoFragmentContainer, carInfoFragment)
+                .commit();
+        //ft.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_FADE);
+    }
+
+    public void onActivityReenter(Intent data) {
+        mChildResultFragment.handleActivityReenter(data);
+    }
+
+    @Override
+    public void handleConnectionError() {
+        ConnectionErrorFragment connectionErrorFragment = ConnectionErrorFragment.newInstance();
+        getFragmentManager()
+                .beginTransaction()
+                .replace(R.id.childFragmentContainer, connectionErrorFragment)
+                .addToBackStack("connectionError")
+                .commit();
+    }
+
+    @Override
+    public void onReconnected() {
+        getFragmentManager().popBackStack();
     }
 }

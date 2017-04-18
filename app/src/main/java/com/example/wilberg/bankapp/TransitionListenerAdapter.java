@@ -1,6 +1,8 @@
 package com.example.wilberg.bankapp;
 
 import android.transition.Transition;
+//UNUSED at the moment
+/*
 
 class TransitionListenerAdapter implements Transition.TransitionListener {
     @Override
@@ -22,4 +24,8 @@ class TransitionListenerAdapter implements Transition.TransitionListener {
     @Override
     public void onTransitionResume(Transition transition) {
     }
+
+
 }
+
+    */

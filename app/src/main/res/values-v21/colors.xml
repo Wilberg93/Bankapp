@@ -3,7 +3,7 @@
     <!-- material colors -->
     <color name="colorPrimary">#105952</color>
     <color name="colorPrimaryDark">#105952</color>
-    <color name="colorAccent">#FF4081</color>
+    <color name="colorAccent">#FF5722</color>
 
     <!-- grayscale -->
     <color name="white">#FFFFFF</color>

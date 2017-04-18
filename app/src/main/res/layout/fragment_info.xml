@@ -7,7 +7,8 @@
 	<ScrollView
 		android:id="@+id/carInfoScrollView"
 		android:layout_width="match_parent"
-		android:layout_height="wrap_content" >
+		android:layout_height="wrap_content"
+		android:layout_above="@id/toolbarFAB">
 
 		<RelativeLayout
 			android:id="@+id/LinearLayout1"
@@ -43,11 +44,6 @@
 							android:layout_height="match_parent" >
 
 							<ImageView
-								android:id="@+id/details_background_image"
-								android:layout_width="match_parent"
-								android:layout_height="300dp" />
-
-							<ImageView
 								android:id="@+id/carImageView"
 								android:layout_width="match_parent"
 								android:layout_height="300dp"
@@ -66,7 +62,7 @@
 								android:textColor="@color/white"
 								android:textStyle="bold"
 								android:gravity="center"
-								android:background="@color/light_grey_transparent"
+								android:background="@color/black"
 								android:layout_marginTop="@dimen/margin_large"
 								android:layout_marginRight="@dimen/margin_large"
 								android:layout_marginEnd="@dimen/margin_large"
@@ -85,21 +81,10 @@
 								android:layout_height="wrap_content"
 								android:ems="8"
 								android:singleLine="true"
-								android:layout_marginLeft="@dimen/margin_large"
-								android:layout_marginStart="@dimen/margin_large"
+								android:layout_marginLeft="@dimen/keyline_1"
+								android:layout_marginStart="@dimen/keyline_1"
 								android:layout_marginTop="@dimen/margin_medium"
 								style="@style/TextView.Larger" />
-
-							<CheckBox
-								android:id="@+id/isFavoritedCheckBox"
-								style="?android:attr/starStyle"
-								android:layout_width="wrap_content"
-								android:layout_height="wrap_content"
-								android:layout_alignParentEnd="true"
-								android:layout_alignParentRight="true"
-								android:layout_marginRight="@dimen/margin_large"
-								android:layout_marginEnd="@dimen/margin_large"
-								android:layout_marginTop="@dimen/margin_medium" />
 
 							<ImageView
 								android:id="@+id/launchIcon"
@@ -114,7 +99,10 @@
 								android:id="@+id/carPriceTextView"
 								android:layout_width="wrap_content"
 								android:layout_height="wrap_content"
-								android:layout_margin="@dimen/margin_large"
+								android:layout_marginLeft="@dimen/keyline_1"
+								android:layout_marginStart="@dimen/keyline_1"
+								android:layout_marginTop="@dimen/margin_large"
+								android:layout_marginBottom="@dimen/margin_large"
 								android:layout_below="@id/carTitleTextView"
 								style="@style/TextView.Large" />
 
@@ -122,10 +110,10 @@
 								android:id="@+id/detailedTitleTextView"
 								android:layout_width="wrap_content"
 								android:layout_height="wrap_content"
-								android:layout_marginBottom="@dimen/margin_medium"
 								android:textSize="@dimen/font_normal"
-								android:layout_marginLeft="@dimen/margin_large"
-								android:layout_marginStart="@dimen/margin_large"
+								android:layout_marginLeft="@dimen/keyline_1"
+								android:layout_marginStart="@dimen/keyline_1"
+								android:layout_marginBottom="@dimen/margin_medium"
 								android:layout_below="@+id/carPriceTextView" />
 						</RelativeLayout>
 					</LinearLayout>
@@ -148,8 +136,8 @@
 				android:layout_width="wrap_content"
 				android:layout_height="wrap_content"
 				android:layout_marginBottom="@dimen/margin_small"
-				android:layout_marginLeft="@dimen/margin_large"
-				android:layout_marginStart="@dimen/margin_large"
+				android:layout_marginLeft="@dimen/keyline_1"
+				android:layout_marginStart="@dimen/keyline_1"
 				android:layout_marginTop="@dimen/margin_larger"
 				android:layout_below="@id/mainCardView"
 				android:text="@string/about_car_text_view"
@@ -166,8 +154,8 @@
 					android:layout_width="match_parent"
 					android:layout_height="wrap_content"
 					android:stretchColumns="yes"
-					android:layout_marginLeft="@dimen/margin_large"
-					android:layout_marginStart="@dimen/margin_large"
+					android:layout_marginLeft="@dimen/keyline_1"
+					android:layout_marginStart="@dimen/keyline_1"
 					android:layout_marginTop="@dimen/margin_medium"
 					android:layout_marginBottom="@dimen/margin_medium"/>
 			</android.support.v7.widget.CardView>
@@ -177,8 +165,8 @@
 				android:layout_width="wrap_content"
 				android:layout_height="wrap_content"
 				android:layout_marginTop="@dimen/margin_larger"
-				android:layout_marginLeft="@dimen/margin_large"
-				android:layout_marginStart="@dimen/margin_large"
+				android:layout_marginLeft="@dimen/keyline_1"
+				android:layout_marginStart="@dimen/keyline_1"
 				android:layout_marginBottom="@dimen/margin_small"
 				android:layout_below="@id/specsCardView"
 				android:text="@string/car_description_text_view"
@@ -194,14 +182,14 @@
 						android:id="@+id/carDescTextView"
 						android:layout_width="match_parent"
 						android:layout_height="wrap_content"
-						android:layout_marginLeft="@dimen/margin_large"
-						android:layout_marginStart="@dimen/margin_large"
+						android:layout_marginLeft="@dimen/keyline_1"
+						android:layout_marginStart="@dimen/keyline_1"
 						android:layout_marginTop="@dimen/margin_medium"
 						android:layout_marginRight="@dimen/margin_large"
 						android:layout_marginEnd="@dimen/margin_large"
-						android:layout_marginBottom="@dimen/margin_medium"
-						android:text="BLA BLA BLA" />
+						android:layout_marginBottom="@dimen/margin_medium" />
 			</android.support.v7.widget.CardView>
 		</RelativeLayout>
 	</ScrollView>
+
 </RelativeLayout>

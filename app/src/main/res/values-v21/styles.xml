@@ -6,6 +6,7 @@
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>
+        <item name="colorButtonNormal">@color/colorAccent</item>
         <item name="android:windowBackground">@color/light_grey</item>
         <item name="windowNoTitle">true</item>
         <item name="windowActionBar">false</item>
@@ -25,17 +26,13 @@
         <item name="android:textColor">@color/black</item>
     </style>
 
-    <!-- home screen button -->
-    <style name="HomeScreenButton">
-        <item name="android:textSize">@dimen/font_large</item>
+    <!-- button -->
+    <style name="Button" parent="Widget.AppCompat.Button.Colored">
         <item name="android:textColor">@color/white</item>
-        <item name="android:textStyle">bold</item>
-        <item name="android:background">@color/colorPrimary</item>
-        <item name="android:windowContentTransitions">true</item>
     </style>
 
     <!-- basic button -->
-    <style name="Button">
+    <style name="Button.Basic">
         <item name="android:textSize">@dimen/font_large</item>
         <item name="android:textColor">@color/colorPrimary</item>
         <item name="android:background">?android:attr/selectableItemBackground</item>

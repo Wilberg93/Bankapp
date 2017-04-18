@@ -7,8 +7,10 @@
 
     <!-- grayscale -->
     <color name="white">#FFFFFF</color>
-    <color name="light_grey">#f6f6f6</color>
+    <color name="grey_light">#f6f6f6</color>
     <color name="light_grey_transparent">#E6EDEDED</color>
+    <color name="grey">#BDBDBD</color>
+    <color name="grey_dark">#5E5E5E</color>
     <color name="black">#000000</color>
 
     <!-- basic colors

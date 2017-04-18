@@ -1,6 +1,8 @@
 package com.example.wilberg.bankapp;
 
+import android.animation.Animator;
 import android.content.Context;
+import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -9,11 +11,12 @@ import android.text.TextWatcher;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
+import android.view.ViewAnimationUtils;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 
-public class PageSearchChildInputFragment extends Fragment {
+public class PageSearchChildInputFragment extends Fragment implements OnClickListener{
 
 	private OnFindButtonClickedListener listener;
 
@@ -21,9 +24,7 @@ public class PageSearchChildInputFragment extends Fragment {
 		void onInputReady(String inputValue);
 	}
 	
-	public final static String CALC_VALUE = "com.wilberg.bankapp.CALCVALUE";
-	
-	Button findCarsButton;
+	public final static String EXTRA_CALC_VALUE = "com.wilberg.bankapp.EXTRA_CALCVALUE";
 	
 	private EditText equityEditText;
 	private EditText perMonthEditText;
@@ -48,22 +49,26 @@ public class PageSearchChildInputFragment extends Fragment {
 	public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
 		super.onViewCreated(view, savedInstanceState);
 
+		// Create enter transition
+		if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+			Animator animator = ViewAnimationUtils.createCircularReveal(view, 0, 0, 0, Math.max(view.getWidth(), view.getHeight()));
+			animator.start();
+		}
+
 		equityEditText = (EditText) view.findViewById(R.id.equityEditText);
-		equityEditText.addTextChangedListener(equityTextWatcher);
 		perMonthEditText = (EditText) view.findViewById(R.id.perMonthEditText);
 		repaymentEditText = (EditText) view.findViewById(R.id.repaymentEditText);
+		// TextWatcher.
+		equityEditText.addTextChangedListener(equityTextWatcher);
 
-		findCarsButton = (Button) view.findViewById(R.id.findCarsButton);
-		findCarsButton.setOnClickListener(findCarsButtonListener);
+		// Button click listeners.
+		view.findViewById(R.id.findCarsButton).setOnClickListener(this);
 	}
 
-    public OnClickListener findCarsButtonListener = new OnClickListener(){
-
-		@Override
-		public void onClick(View arg0) {
-			listener.onInputReady(calculateValue());
-		}
-    };
+	@Override
+	public void onClick(View view) {
+		listener.onInputReady(calculateValue());
+	}
     
     public TextWatcher equityTextWatcher = new TextWatcher() {
 
@@ -85,17 +90,15 @@ public class PageSearchChildInputFragment extends Fragment {
 		@Override
 		public void onTextChanged(CharSequence arg0, int arg1, int arg2,
 				int arg3) { }
-
     };
     
     public String calculateValue(){
-    	
+    	// Calculate value to use as limit for search for cars.
     	String equity = equityEditText.getText().toString();
     	String perMonth = perMonthEditText.getText().toString();
     	String repayment = repaymentEditText.getText().toString();
 
 		//Temp return value
     	return "10000";
-
     }
 }

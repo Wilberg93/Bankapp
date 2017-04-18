@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent" >
+
+    <TextView
+        android:id="@+id/noNetworkTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/no_network_available"
+        android:layout_margin="@dimen/keyline_1" />
+
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:src="@drawable/ic_warning_black_192dp"
+        android:tint="@color/grey_dark"
+        android:layout_below="@id/noNetworkTextView"
+        android:layout_above="@+id/connectionErrorTextView"/>
+
+    <TextView
+        android:id="@+id/connectionErrorTextView"
+        android:text="@string/connection_error_message"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/margin_larger"
+        android:layout_marginBottom="@dimen/margin_larger"
+        android:layout_centerHorizontal="true"
+        android:layout_above="@+id/reloadTextView"/>
+
+    <TextView
+        android:id="@+id/reloadTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="@dimen/margin_larger"
+        android:text="@string/connection_error_reload"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true" />
+
+</RelativeLayout>

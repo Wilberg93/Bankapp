@@ -30,10 +30,11 @@
         android:id="@+id/findCarsButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/checkBox1"
+        android:layout_marginBottom="70dp"
+        android:text="@string/find_cars_button"
         android:layout_alignParentBottom="true"
-        android:layout_marginBottom="20dp"
-        android:text="@string/find_cars_button" />
+        android:layout_alignStart="@+id/checkBox1"
+        style="@style/Button"/>
 
     <EditText
         android:id="@+id/equityEditText"

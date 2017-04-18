@@ -3,6 +3,8 @@
     <!-- application strings -->
     <string name="app_name">BankApp</string>
     <string name="action_settings">Settings</string>
+    <string name="no_internet_access">Not Connected To Internet</string>
+    <string name="no_network_available">No network found. Please retry or connect to a network. </string>
 
     <!-- home strings -->
     <string name="bank">Bank Logo</string>
@@ -30,7 +32,7 @@
     <string name="drawer_close">Drawer Closed</string>
     <string name="sort_by_text_view">Sort by</string>
     <string name="done_button">Done</string>
-    <string-array name="drawer_list">
+    <string-array name="sort_drawer_list">
         <item>Published</item>
         <item>Model</item>
         <item>Lowest Price</item>
@@ -41,6 +43,14 @@
         <item>Most Relevant</item>
         <item>Nearest</item>
     </string-array>
+
+    <!-- URLs -->
+    <string name="url_search">http://m.finn.no/car/used/search.html?filters&amp;sort=%1$s&amp;page=%2$s"</string>
+    <string name="url_car_info">https://m.finn.no/car/used/ad.html?finnkode=%1$s"</string>
+
+    <!-- Connection strings -->
+    <string name="connection_error_message">Please check your internet connection and tap "Reload".</string>
+    <string name="connection_error_reload">Reload</string>
 
     <!-- result strings -->
     <string name="progress_message">Searching...</string>
@@ -56,6 +66,7 @@
 
     <!-- description strings -->
     <string name="viewpager_page_text_view">%1$d of %2$d</string>
+    <string name="year_text_view">Årsmodell: %1$s</string>
     <string name="price_value_text_view">%1$s kr</string>
     <string name="about_car_text_view">About The Car</string>
     <string name="car_description_text_view">Description</string>

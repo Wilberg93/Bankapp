@@ -25,9 +25,6 @@ import java.util.List;
 public class CarsAdapter extends
         RecyclerView.Adapter<CarsAdapter.ViewHolder> {
 
-    private final static String CAR_ID = "com.example.wilberg.bankapp.CAR_ID";
-    private final static String LIST_POSITION = "com.example.wilberg.bankapp.LIST_POSITION";
-
     // Define listener member variable
     private OnItemClickListener listener;
     // Define the listener interface
@@ -40,44 +37,38 @@ public class CarsAdapter extends
     }
 
     // Provide a direct reference to each of the views within a data item
-
     private Context context;
     private List<Car> cars;
+    private boolean inListView;
 
     public CarsAdapter(Context context, List<Car> cars) {
         this.context = context;
         this.cars = cars;
+        inListView = true;
     }
 
     @Override
     public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         Context context = parent.getContext();
         LayoutInflater inflater = LayoutInflater.from(context);
-        View carView = inflater.inflate(R.layout.item_car, parent, false);
-
-        ViewHolder viewHolder = new ViewHolder(carView);
-        return viewHolder;
+        View carView = inflater.inflate(inListView ? R.layout.item_car : R.layout.item_car_narrow, parent, false);
+        return new ViewHolder(carView);
     }
 
     @Override
     public void onBindViewHolder(ViewHolder holder, int position) {
         Car car = cars.get(position);
 
-        TextView carInfoTextView = holder.carInfoTextView;
-        TextView locationTextView = holder.locationTextView;
-        TextView priceTextView = holder.priceTextView;
-        TextView distanceTextView = holder.distanceTextView;
-        TextView yearTextView = holder.yearTextView;
+        holder.carInfoTextView.setText(car.getName());
+        holder.locationTextView.setText(car.getLocation());
+        holder.priceTextView.setText(context.getString(R.string.price_value_text_view, car.getPrice()));
+        holder.distanceTextView.setText(car.getDistance());
+        holder.yearTextView.setText(context.getString(R.string.year_text_view, car.getYear()));
         ImageView carImageView = holder.carImageView;
-
-        carInfoTextView.setText(car.getName());
-        yearTextView.append(car.getYear());
-        distanceTextView.setText(car.getDistance());
-        locationTextView.setText(car.getLocation());
-        priceTextView.setText(context.getString(R.string.price_value_text_view, car.getPrice()));
         Picasso.with(context).load(car.getMainImgURL()).fit().into(carImageView);
 
-
+        if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) carImageView.setTransitionName("carImage" + car.getCarID());
+        carImageView.setTag("carImage" + car.getCarID());
     }
 
     @Override
@@ -85,12 +76,10 @@ public class CarsAdapter extends
         return (cars != null ? cars.size() : 0);
     }
 
-    // Used to cache the views within the item layout for fast access
+    // Used to cache the views within the item item_car_narrow for fast access
     class ViewHolder extends RecyclerView.ViewHolder {
         // Your holder should contain a member variable
         // for any view that will be set as you render a row
-        public TextView nameTextView;
-        public Button messageButton;
         TextView carInfoTextView;
         TextView locationTextView;
         TextView priceTextView;
@@ -118,24 +107,15 @@ public class CarsAdapter extends
                     // Triggers click upwards to the adapter on click
                     if (listener != null) {
                         int position = getAdapterPosition();
-                        if (position != RecyclerView.NO_POSITION) {
-                            carImageView.setTransitionName("carImage" + cars.get(position).getCarID());
-                            carInfoTextView.setTransitionName("carTitle" + cars.get(position).getTitle());
-                            Pair<View, String> p1 = Pair.create((View) carImageView, carImageView.getTransitionName());
-                            Pair<View, String> p2 = Pair.create((View) carInfoTextView, carInfoTextView.getTransitionName());
-                            Intent intent = new Intent(context, CarInfoActivity.class);
-                            intent.putExtra(CAR_ID, cars.get(position).getCarID());
-                            intent.putExtra(LIST_POSITION, position);
-                            ActivityOptionsCompat optionsCompat = ActivityOptionsCompat.makeSceneTransitionAnimation((Activity) context, p1, p2);
-                            context.startActivity(intent, optionsCompat.toBundle());
-                            //listener.onItemClick(itemView, position, carImageView, carInfoTextView);
-                        }
+                        if (position != RecyclerView.NO_POSITION)
+                            listener.onItemClick(itemView, position, carImageView, carInfoTextView);
                     }
                 }
             });
-
         }
-
     }
 
+    public void setInListView(boolean inListView) {
+        this.inListView = inListView;
+    }
 }

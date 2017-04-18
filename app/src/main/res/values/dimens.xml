@@ -28,4 +28,7 @@
     <dimen name="keyline_1">16dp</dimen>
     <dimen name="keyline_2">72dp</dimen>
 
+    <!-- large toolbar size -->
+    <dimen name="large_toolbar_size">64dp</dimen>
+
 </resources>
